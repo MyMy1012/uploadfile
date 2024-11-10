@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tải Ảnh Lên</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        #uploadedImage {
+            display: none;
+            max-width: 100%;
+            margin-top: 10px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #ff4081;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #e03572;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tải Ảnh Từ Thiết Bị</h1>
+    
+    <!-- Nút tải ảnh và vùng hiển thị ảnh đã tải -->
+    <input type="file" accept="image/*" id="upload" style="display:none;" onchange="displayImage(this)">
+    <button onclick="document.getElementById('upload').click();">Tải Ảnh Lên</button>
+    <img id="uploadedImage" alt="Ảnh Đã Chọn">
+
+    <script>
+        function displayImage(input) {
+            const file = input.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.getElementById('uploadedImage');
+                    img.src = e.target.result;
+                    img.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+</body>
+</html>
